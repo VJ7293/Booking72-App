@@ -5,7 +5,7 @@
   "description": "Booking App",
   "main": "index.js",
   "scripts": {
-  
+    "start": "nodemon index.js",
     "dev": "nodemon index.js",
   "build":"npm install"
   },
