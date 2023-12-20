@@ -17,8 +17,8 @@ import PlacePage from "./components/Place/PlacePage";
 import "./App.css";
 import BookingsPage from "./components/Booking/BookingsPage";
 import BookingPage from "./components/Booking/BookingPage";
-axios.defaults.baseURL = "http://127.0.0.1:4000/";
-axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "http://127.0.0.1:4000/";
+// axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "production"
