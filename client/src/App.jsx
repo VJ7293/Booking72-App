@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import IndexPage from "./components/pages/IndexPage";
 import LoginPage from "./components/pages/LoginPage";
@@ -18,7 +17,14 @@ import PlacePage from "./components/Place/PlacePage";
 import "./App.css";
 import BookingsPage from "./components/Booking/BookingsPage";
 import BookingPage from "./components/Booking/BookingPage";
-axios.defaults.baseURL = "http://127.0.0.1:4000/";
+// axios.defaults.baseURL = "http://127.0.0.1:4000/";
+// axios.defaults.withCredentials = true;
+
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://your-render-app.onrender.com/"
+    : "http://127.0.0.1:4000/";
+
 axios.defaults.withCredentials = true;
 
 function App() {
