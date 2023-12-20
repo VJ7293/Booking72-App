@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'DMSans';
+    src: url('/path/to/DMSans-Regular.ttf') format('truetype');
+  }
+
+
+  /* App.css */
+
+/* .App {
+  transition: background-color 0.5s ease;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.your-slider-class {
+  max-width: 100%;
+} */

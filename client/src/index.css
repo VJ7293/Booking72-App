@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DMSans-Regular';
+  src:  url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap')
+  ('/path/to/DMSans-Regular.ttf') format('truetype');
+  /* Other font properties and styles if needed */
+}
+body {
+  font-family: 'DMSans-Regular', sans-serif;
+}
+input[type='text'],input[type="email"] ,input[type='password'],input[type="number"],input[type="tel"],
+textarea
+{
+  @apply w-full text-lg border my-1 py-2 px-3 rounded-2xl mt-4 ;
+}
+textarea{
+  height:140px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+button {
+  @apply bg-gray-300;
+}
+
+button.bizluru1{
+  background-color: #06BDB8;
+  @apply  bg-gradient-to-r from-bizluru1 to-bizluru2 p-2 w-full text-white rounded-2xl;
+}
+/* #app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+} */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background:black;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fit;
+}
+/* toastify-custom.css */
+@layer utilities {
+  .text-with-shadow {
+    @apply text-shadow;
+  }
+
+  .text-hover-shadow:hover {
+    @apply text-shadow-hover;
+  }
+}
+@layer components {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-hover {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+.blue-glassmorphism { 
+  background: rgb(39, 51, 89, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+.white-glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+/* #app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+} */
+
+/* body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+} */
+
+
+
+
+/* .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+
+/* .fullScreenElement {
+  width: 100%;
+  height: 100%;
+  
+  top: 0;
+  left: 0;
+  Set your desired background color
+} */
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.shadow-text {
+  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.5); /* You can adjust the shadow values */
+}
