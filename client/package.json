@@ -22,6 +22,7 @@
     "flowbite-react": "^0.6.4",
     "go.min.js": "^1.2.3-0",
     "gojs": "^2.3.13",
+    "highlight.js": "^11.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
