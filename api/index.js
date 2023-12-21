@@ -30,6 +30,12 @@ app.use(
   })
 );
 
+// Middleware to handle .mjs files
+app.get("*.mjs", (req, res, next) => {
+  res.type("application/javascript");
+  next();
+});
+
 // Function to extract user data from JWT token
 function getUserDataFromReq(req) {
   return new Promise((resolve, reject) => {
