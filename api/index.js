@@ -20,6 +20,16 @@ const app = express();
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "tyasuyfiusdvlkdfnblkfsdnfbkjn";
 
+app.use(
+  "/src",
+  express.static("src", {
+    setHeaders: (res, path) => {
+      if (path.endsWith(".jsx")) {
+        res.setHeader("Content-Type", "text/javascript");
+      }
+    },
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
