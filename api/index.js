@@ -1,5 +1,6 @@
 // Import necessary modules
 const express = require("express");
+
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user");
@@ -20,6 +21,24 @@ const app = express();
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "tyasuyfiusdvlkdfnblkfsdnfbkjn";
 
+const corsOptions = {
+  credentials: true,
+  origin: "http://localhost:3001",
+};
+
+// Use cors middleware
+// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://127.0.0.1:3001",
+  })
+);
+
 app.use(
   "/src",
   express.static("src", {
@@ -28,15 +47,6 @@ app.use(
         res.setHeader("Content-Type", "text/javascript");
       }
     },
-  })
-);
-app.use(express.json());
-app.use(cookieParser());
-app.use("/uploads", express.static(__dirname + "/uploads"));
-app.use(
-  cors({
-    credentials: true,
-    origin: "http://127.0.0.1:3001",
   })
 );
 
@@ -344,4 +354,7 @@ app.get("/bookings", async (req, res) => {
 });
 
 // Start the Express app on port 4000
-app.listen(4000);
+// app.listen(4000);
+app.listen(4000, () => {
+  console.log("Server is running on port 4000");
+});

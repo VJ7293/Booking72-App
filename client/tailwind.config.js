@@ -10,6 +10,8 @@ export default {
         bizluru2: "#1C88AD",
         bizluru3: "#FBB03B",
         bizluru4: "#FCEE21",
+        bizluru5: "#22577A",
+        bizluru6: "#430711",
       },
       screens: {
         xs: "320px", // Example custom breakpoint

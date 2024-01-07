@@ -10,21 +10,6 @@ const ProfilePage = () => {
   const [redirect, setRedirect] = useState(null);
   const { user, ready, setUser } = useContext(UserContext);
 
-  const [profilePageBg, setProfilePageBg] = useState(null);
-
-  useEffect(() => {
-    const loadProfilePageBg = async () => {
-      try {
-        const module = await import("../images/ProfileBg.jpg");
-        const image = module.default;
-        setProfilePageBg(image);
-      } catch (error) {
-        console.error("Error loading ProfileBg.jpg:", error);
-      }
-    };
-
-    loadProfilePageBg();
-  }, []); // Empty
   //
   const links = [
     { name: "Open roles", href: "#" },
@@ -86,7 +71,7 @@ const ProfilePage = () => {
             <AccountNav />
           </div>
           <img
-            src={profilePageBg}
+            src={ProfilePageBg}
             alt=""
             className="rounded-2xl absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
           />

@@ -31,7 +31,7 @@ button {
 
 button.bizluru1{
   background-color: #06BDB8;
-  @apply  bg-gradient-to-r from-bizluru1 to-bizluru2 p-2 w-full text-white rounded-2xl;
+  @apply  bg-gradient-to-r from-bizluru3 to-bizluru4 p-2 w-full text-white rounded-2xl;
 }
 /* #app {
   height: 100%;

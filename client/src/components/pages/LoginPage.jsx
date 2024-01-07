@@ -49,24 +49,100 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post("/login", { email, password });
-
-      if (response.status === 200) {
-        // Successful login, handle accordingly
-        setUser(response.data);
-        setRedirect(true);
-        toast.success("Successfully logged in", { transition: Bounce });
+      const data = response.data;
+      console.log(response.data);
+      if (data.errors) {
+        toast.error(data.errors, { className: "custom-toast-error" });
+      } else if (data.message === "Invalid email or password") {
+        toast.error(data.message, { className: "custom-toast-error" });
+      } else if (data.message === "User not found") {
+        toast.error("User does not exist", { className: "custom-toast-error" });
       } else {
-        // Handle other status codes
-        toast.error(response.data.message || "Login failed", {
-          transition: Bounce,
-        });
+        setUser(data);
+        setRedirect(true);
+        toast.success(
+          "Successfully logged in",
+          { transition: Bounce },
+          { className: "custom-toast-success" }
+        );
       }
     } catch (err) {
       console.error(err);
-      toast.error("Login failed", { transition: Bounce });
+      toast.error(
+        "Login failed",
+        { transition: Bounce },
+        { className: "custom-toast-error" }
+      );
     }
   };
 
+  // const handleLoginSubmit = async (ev) => {
+  //   ev.preventDefault();
+  //   formValidation();
+
+  //   try {
+  //     const response = await axios.post("/login", { email, password });
+  //     const data = response.data;
+
+  //     if (data.hasOwnProperty("errors")) {
+  //       alert(data.errors);
+  //     } else if (data.message === "Invalid email or password") {
+  //       alert(data.message);
+  //     } else {
+  //       setUser(data);
+  //       setRedirect(true);
+  //       alert("Successfully logged in");
+
+  //       // localStorage.setItem("token", token);
+  //       // If you're using a function like handleAuth, you can call it here
+  //       // handleAuth();
+  //     }
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     alert("Login failed");
+  //   }
+  // };
+
+  // const handleLoginSubmit = async (ev) => {
+  //   ev.preventDefault();
+  //   formValidation();
+
+  //   const data = await axios
+  //     .post("/login", { email, password })
+  //     .then((response) => {
+  //       if (data.hasOwnProperty("errors")) {
+  //         //this can be used instead of above if statement(Object.keys(result).includes(erros))
+  //         alert(result.errors);
+  //       } else {
+  //         setUser(data);
+  //         setRedirect(true);
+  //         alert("successfully logged in");
+
+  //         localStorage.setItem("token", response.token);
+  //         // const { location } = this.props.location.push("/");
+  //         handleAuth();
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // if (!errors.email && !errors.password) {
+  //   try {
+  //     const { data } = await axios.post("/login", { email, password });
+  //     localStorage.setItem.JSON.stringify("authtoken", data);
+  //     // const authToken = localStorage.getItem.JSON.stringify(
+  //     //   "authtoken",
+  //     //   data.token
+  //     // ); // Replace "authtoken" with the key you used to store the token
+
+  //     setUser(data);
+  //     setRedirect(true);
+  //     alert("Login successfull");
+  //   } catch (e) {
+  //     alert("Login failed");
+  //   }
+  // }
+  // };
   if (redirect) {
     return <Navigate to={"/"} />;
   }
@@ -121,11 +197,12 @@ const LoginPage = () => {
                 className="mr-10 text-bizluru2 "
               />
             ) : (
-              <FontAwesomeIcon icon={faEye} className="mr-10 text-bizluru2" />
+              <FontAwesomeIcon icon={faEye} className="mr-10 text-bizluru3  " />
             )}
           </div>
 
-          <button className="mt-3  bizluru1" onClick={togglePasswordVisibility}>
+          <button className="mt-3  bizluru1">
+            {/* onClick={togglePasswordVisibility} */}
             Login
           </button>
           <div className="text-center">
