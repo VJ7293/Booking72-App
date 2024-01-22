@@ -24,9 +24,11 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
@@ -49,100 +51,27 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post("/login", { email, password });
-      const data = response.data;
-      console.log(response.data);
-      if (data.errors) {
-        toast.error(data.errors, { className: "custom-toast-error" });
-      } else if (data.message === "Invalid email or password") {
-        toast.error(data.message, { className: "custom-toast-error" });
-      } else if (data.message === "User not found") {
-        toast.error("User does not exist", { className: "custom-toast-error" });
-      } else {
+
+      if (response.status === 200) {
+        // Successful login, handle accordingly
+        const { data } = await axios.post("/login", { email, password });
         setUser(data);
+        alert("Login successful");
         setRedirect(true);
-        toast.success(
-          "Successfully logged in",
-          { transition: Bounce },
-          { className: "custom-toast-success" }
-        );
+
+        toast.success("Successfully logged in", { transition: Bounce });
+      } else {
+        // Handle other status codes
+        toast.error(response.data.message || "Login failed", {
+          transition: Bounce,
+        });
       }
     } catch (err) {
       console.error(err);
-      toast.error(
-        "Login failed",
-        { transition: Bounce },
-        { className: "custom-toast-error" }
-      );
+      toast.error("Login failed", { transition: Bounce });
     }
   };
 
-  // const handleLoginSubmit = async (ev) => {
-  //   ev.preventDefault();
-  //   formValidation();
-
-  //   try {
-  //     const response = await axios.post("/login", { email, password });
-  //     const data = response.data;
-
-  //     if (data.hasOwnProperty("errors")) {
-  //       alert(data.errors);
-  //     } else if (data.message === "Invalid email or password") {
-  //       alert(data.message);
-  //     } else {
-  //       setUser(data);
-  //       setRedirect(true);
-  //       alert("Successfully logged in");
-
-  //       // localStorage.setItem("token", token);
-  //       // If you're using a function like handleAuth, you can call it here
-  //       // handleAuth();
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //     alert("Login failed");
-  //   }
-  // };
-
-  // const handleLoginSubmit = async (ev) => {
-  //   ev.preventDefault();
-  //   formValidation();
-
-  //   const data = await axios
-  //     .post("/login", { email, password })
-  //     .then((response) => {
-  //       if (data.hasOwnProperty("errors")) {
-  //         //this can be used instead of above if statement(Object.keys(result).includes(erros))
-  //         alert(result.errors);
-  //       } else {
-  //         setUser(data);
-  //         setRedirect(true);
-  //         alert("successfully logged in");
-
-  //         localStorage.setItem("token", response.token);
-  //         // const { location } = this.props.location.push("/");
-  //         handleAuth();
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // if (!errors.email && !errors.password) {
-  //   try {
-  //     const { data } = await axios.post("/login", { email, password });
-  //     localStorage.setItem.JSON.stringify("authtoken", data);
-  //     // const authToken = localStorage.getItem.JSON.stringify(
-  //     //   "authtoken",
-  //     //   data.token
-  //     // ); // Replace "authtoken" with the key you used to store the token
-
-  //     setUser(data);
-  //     setRedirect(true);
-  //     alert("Login successfull");
-  //   } catch (e) {
-  //     alert("Login failed");
-  //   }
-  // }
-  // };
   if (redirect) {
     return <Navigate to={"/"} />;
   }
@@ -170,23 +99,23 @@ const LoginPage = () => {
             placeholder="your @email.com"
             onChange={handleEmail}
           />
-          {/* <input
+          <input
             className="text-center "
             value={password}
             type={passwordVisible ? "text" : "password"}
             name="password"
             placeholder="Enter Password"
             onChange={handlePassword}
-          /> */}
+          />
 
-          <input
+          {/* <input
             className="border p-2 pl-10 text-center"
             value={password}
             type={passwordVisible ? "text" : "password"}
             name="password"
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
           <div
             className="absolute inset-y-0 right-0 flex mt-4 items-center px-2 cursor-pointer"
             onClick={togglePasswordVisibility}
@@ -197,12 +126,11 @@ const LoginPage = () => {
                 className="mr-10 text-bizluru2 "
               />
             ) : (
-              <FontAwesomeIcon icon={faEye} className="mr-10 text-bizluru3  " />
+              <FontAwesomeIcon icon={faEye} className="mr-10 text-bizluru2" />
             )}
           </div>
 
-          <button className="mt-3  bizluru1">
-            {/* onClick={togglePasswordVisibility} */}
+          <button className="mt-3  bizluru1" onClick={togglePasswordVisibility}>
             Login
           </button>
           <div className="text-center">

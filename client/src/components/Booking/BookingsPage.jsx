@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import AccountNav from "../subComponents/AccountNav";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,11 +14,22 @@ import DarkBlueBg from "../../images/DarkBlueBg.jpg";
 
 const BookingsPage = () => {
   const [bookings, setBookings] = useState([]);
+  // useEffect(() => {
+  //   axios.get("/bookings").then((response) => {
+  //     setBookings(response.data);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios.get("/bookings").then((response) => {
-      setBookings(response.data);
-    });
+    axios
+      .get("/bookings")
+      .then((response) => {
+        setBookings(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching bookings:", error);
+      });
   }, []);
+
   return (
     <div className=" relative bg-gray-900 overflow-hidden m-1 rounded-xl">
       <img

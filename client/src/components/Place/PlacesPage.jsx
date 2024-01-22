@@ -4,9 +4,6 @@ import AccountNav from "../subComponents/AccountNav";
 import axios from "axios";
 import PlaceImg from "./PlaceImg";
 import ScrollArrows from "../ScrollAwrows/ScrollArrows";
-// ... (other imports)
-
-// ... (other imports)
 
 const PlacesPage = () => {
   const [places, setPlaces] = useState([]);
